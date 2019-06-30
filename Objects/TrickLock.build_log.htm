@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.27.1.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: xxx lll, XXX, LIC=BLBRA-1LJRB-PQA0A-1UVCA-VDYAG-BSK72
+License Information: xxxx llll, xxxx, LIC=EPYKP-MHUBV-99AGW-Q96SE-QD6A2-1QKLE
  
 Tool Versions:
 Toolchain:       MDK51 Professional  Version: 9.60.0.0
-Toolchain Path:  E:\Keil\C51\BIN
+Toolchain Path:  C:\Keil_v5\C51\BIN
 C Compiler:      C51.exe V9.60.0.0
 Assembler:       A51.exe V8.2.7.0
 Linker/Locator:  BL51.exe V6.22.2.0
@@ -18,7 +18,7 @@ Hex Converter:   OH51.exe V2.7.0.0
 CPU DLL:         S8051.DLL V3.122.0.0
 Dialog DLL:      DP51.DLL V2.67.0.0 
 <h2>Project:</h2>
-C:\Users\32911\Desktop\TrickLock\TrickLock.uvproj
+C:\Users\GinShio\Desktop\TrickLock\TrickLock.uvproj
 Project File Date:  06/30/2019
 
 <h2>Output:</h2>
@@ -28,7 +28,6 @@ compiling delay.c...
 compiling type.c...
 compiling led.c...
 compiling main.c...
-src\main.c(15): warning C294: unreachable code
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_DELAY50US?DELAY
@@ -36,9 +35,20 @@ linking...
     SEGMENT: ?PR?_DELAY50MS?DELAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_DELAY1S?DELAY
-Program Size: data=47.0 xdata=0 code=1142
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOCK4LED?LED
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UNLOCK4LED?LED
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+    ADDRESS: 0147H
+Program Size: data=55.0 xdata=0 code=1094
 creating hex file from ".\Objects\TrickLock"...
-".\Objects\TrickLock" - 0 Error(s), 4 Warning(s).
+".\Objects\TrickLock" - 0 Error(s), 7 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

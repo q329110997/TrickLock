@@ -8,7 +8,7 @@
 #define MACRO_H_
 
 // 模块宏定义
-#define LED P2
+#define KEYPAD P1  // 独立键盘 (P1)
 
 ////////////////////////////////////
 // 通用宏函数
