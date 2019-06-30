@@ -7,6 +7,8 @@
 #ifndef TYPE_H_
 #define TYPE_H_
 
+#include <reg52.h>
+
 // 基础类型定义
 typedef signed char int8;     // 8位有符号整型: int8
 typedef unsigned char uint8;  // 8位无符号整型: uint8
@@ -45,6 +47,8 @@ typedef struct Information {
   void (* const get_passwd)(struct Information* self, char passwd[4]);
   // 修改当前密码passwd
   void (* const set_passwd)(struct Information* self, char passwd[4]);
+  // 对比输入密码和当前密码
+  void (* const diff_passwd)(struct Information* self, char passwd[4]);
 } Infor;
 
 // 生成密码锁信息对象 (单例模式)
