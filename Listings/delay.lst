@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   DELAY                                                             06/30/2019 09:46:19 PAGE 1   
+C51 COMPILER V9.60.0.0   DELAY                                                             06/30/2019 20:42:08 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DELAY
 OBJECT MODULE PLACED IN .\Objects\delay.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE src\universal\delay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(
-                    -.\Listings\delay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE src\universal\delay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\delay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
 
 line level    source
 
@@ -38,7 +38,7 @@ line level    source
   28   1      }
   29          
   30          void Delay1S(uint8 n) {
-  31   1        uint8 i, j, k, l;
+  31   1        uint8 i, j, k;
   32   1        for (; n > 0; n--) {
   33   2          for (i = 20; i > 0; i--) {
   34   3            for (j = 88; j > 0; j--) {
@@ -49,7 +49,6 @@ line level    source
   39   3          }
   40   2        }
   41   1      }
-*** WARNING C280 IN LINE 31 OF src\universal\delay.c: 'l': unreferenced local variable
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
@@ -57,10 +56,10 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       1
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

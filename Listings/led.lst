@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   LED                                                               06/30/2019 12:25:12 PAGE 1   
+C51 COMPILER V9.60.0.0   LED                                                               06/30/2019 20:42:09 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED
 OBJECT MODULE PLACED IN .\Objects\led.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE src\led\led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
-                    -gs\led.lst) TABS(2) OBJECT(.\Objects\led.obj)
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE src\led\led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -led.lst) TABS(2) OBJECT(.\Objects\led.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52          void Unlock4Led(void) {
   53   1        uint8 i;
   54   1        Infor* infor = generator_infor();
-C51 COMPILER V9.60.0.0   LED                                                               06/30/2019 12:25:12 PAGE 2   
+C51 COMPILER V9.60.0.0   LED                                                               06/30/2019 20:42:09 PAGE 2   
 
   55   1        infor->set_sts(UNLOCK);
   56   1        P0 = 0x7F;

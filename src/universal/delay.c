@@ -28,7 +28,7 @@ void Delay50Ms(uint8 n) {
 }
 
 void Delay1S(uint8 n) {
-  uint8 i, j, k, l;
+  uint8 i, j, k;
 	for (; n > 0; n--) {
 		for (i = 20; i > 0; i--) {
 		  for (j = 88; j > 0; j--) {
