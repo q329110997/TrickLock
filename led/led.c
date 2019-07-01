@@ -1,20 +1,18 @@
 #include "led.h"
+
 #include "../universal/type.h"
 #include "../universal/delay.h"
+#include "../universal/macro.h"
 
 #include <reg52.h>
 #include <intrins.h>
 
-sbit my_sclk = P3^6;  // 移位寄存器时钟信号
-sbit my_clk = P3^5;   // 存储寄存器时钟信号
-sbit my_ser = P3^4;    // 串行输入口
-
 // LED 锁状态 段数据
-code uint8 led_lock_seg[] = {0x00, 0x0E, 0x3E, 0x4E, 0x4E, 0x3E, 0x0E, 0x00};
+static code uint8 led_lock_seg[] = {0x00, 0x0E, 0x3E, 0x4E, 0x4E, 0x3E, 0x0E, 0x00};
 // LED 解锁状态 段数据
-code uint8 led_unlock_seg[] = {0x00, 0x0E, 0x6E, 0x8E, 0x8E, 0x7E, 0x0E, 0x00};
+static code uint8 led_unlock_seg[] = {0x00, 0x0E, 0x6E, 0x8E, 0x8E, 0x7E, 0x0E, 0x00};
 // LED 位数据
-code uint8 led_bit[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
+static code uint8 led_bit[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
 
 // @func 向 HC595 发送一字节信息, 控制 LED 点阵
 static void SendByte4Hc595(uint8 dat) {
@@ -61,4 +59,30 @@ void Unlock4Led(void) {
     SendByte4Hc595(0x00);
   }
   P0 = 0x00;
+}
+
+void LedUnlock(void) {
+  uint8 i = 3, j;
+  while (i--) {
+    for (j = 66; j > 0; --j) {
+      Lock4Led();
+    }
+    for (j = 66; j > 0; --j) {
+      Unlock4Led();
+    }
+    Delay50Ms(8);
+  }
+}
+
+void LedLock(void) {
+  uint8 i = 3, j;
+  while (i--) {
+    for (j = 66; j > 0; --j) {
+      Unlock4Led();
+    }
+    for (j = 66; j > 0; --j) {
+      Lock4Led();
+    }
+    Delay50Ms(8);
+  }
 }
