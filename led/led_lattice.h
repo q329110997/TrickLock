@@ -4,8 +4,8 @@
  * 2019.06.29 19:56, 刘鑫<ginshio78@gmail.com>
  */
 
-#ifndef LED_H_
-#define LED_H_
+#ifndef LED_LATTICE_H_
+#define LED_LATTICE_H_
 
 // @func LED锁状态显示
 // @param void
@@ -27,4 +27,4 @@ void LedUnlock(void);
 // @return void
 void LedLock(void);
 
-#endif  // LED_H_
+#endif  // LED_LATTICE_H_

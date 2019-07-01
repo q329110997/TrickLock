@@ -1,4 +1,4 @@
-#include "led.h"
+#include "led_lattice.h"
 
 #include "../universal/type.h"
 #include "../universal/delay.h"
@@ -35,54 +35,54 @@ static void SendByte4Hc595(uint8 dat) {
 
 void Lock4Led(void) {
 	uint8 i;
-  Infor* infor = generator_infor();
-  infor->set_sts(LOCK);
-  P0 = 0x7F;
+  LED_LATTICE = 0x7F;
   for (i = 0; i < 8; ++i) {
-    P0 = led_bit[i];
+    LED_LATTICE = led_bit[i];
     SendByte4Hc595(led_lock_seg[i]);
     Delay1Ms(1);
     SendByte4Hc595(0x00);
   }
-  P0 = 0x00;
+  LED_LATTICE = 0x00;
 }
 
 void Unlock4Led(void) {
 	uint8 i;
-  Infor* infor = generator_infor();
-  infor->set_sts(UNLOCK);
-  P0 = 0x7F;
+  LED_LATTICE = 0x7F;
   for (i = 0; i < 8; ++i) {
-    P0 = led_bit[i];
+    LED_LATTICE = led_bit[i];
     SendByte4Hc595(led_unlock_seg[i]);
     Delay1Ms(1);
     SendByte4Hc595(0x00);
   }
-  P0 = 0x00;
+  LED_LATTICE = 0x00;
 }
 
 void LedUnlock(void) {
   uint8 i = 3, j;
+  Infor* infor = generator_infor();
+  infor->set_sts(UNLOCK);
   while (i--) {
-    for (j = 66; j > 0; --j) {
+    for (j = 60; j > 0; --j) {
       Lock4Led();
     }
-    for (j = 66; j > 0; --j) {
+    for (j = 60; j > 0; --j) {
       Unlock4Led();
     }
-    Delay50Ms(8);
+    Delay50Ms(6);
   }
 }
 
 void LedLock(void) {
   uint8 i = 3, j;
+  Infor* infor = generator_infor();
+  infor->set_sts(LOCK);
   while (i--) {
-    for (j = 66; j > 0; --j) {
+    for (j = 60; j > 0; --j) {
       Unlock4Led();
     }
-    for (j = 66; j > 0; --j) {
+    for (j = 60; j > 0; --j) {
       Lock4Led();
     }
-    Delay50Ms(8);
+    Delay50Ms(6);
   }
 }
