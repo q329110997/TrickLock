@@ -6,56 +6,56 @@
 #include <string.h>
 
 static int16 KeyDown(void) {
-	uint8 a = 0;
+  uint8 a = 0;
   int16 col = -1, row = -1;
-	KEYPAD = 0x0F;
-	if (KEYPAD != 0x0F) {
-		Delay1Ms(10);
-		if (KEYPAD != 0x0F) {
-			KEYPAD = 0x0F;  //测试列
-			switch (KEYPAD) {
-				case 0x07: {
+  KEYPAD = 0x0F;
+  if (KEYPAD != 0x0F) {
+    Delay1Ms(10);
+    if (KEYPAD != 0x0F) {
+      KEYPAD = 0x0F;  //测试列
+      switch (KEYPAD) {
+        case 0x07: {
           col = 0;
           break;
         }
-				case 0x0B: {
+        case 0x0B: {
           col = 1;
           break;
         }
-				case 0x0D: {
+        case 0x0D: {
           col = 2;
           break;
         }
-				case 0x0E: {
+        case 0x0E: {
           col = 3;
           break;
         }
-			}
-			KEYPAD = 0xF0;  //测试行
-			switch (KEYPAD) {
-				case 0x70: {
+      }
+      KEYPAD = 0xF0;  //测试行
+      switch (KEYPAD) {
+        case 0x70: {
           row = 0;
           break;
         }
-				case 0xB0: {
+        case 0xB0: {
           row = 1;
           break;
         }
-				case 0xD0: {
+        case 0xD0: {
           row = 2;
           break;
         }
-				case 0xE0: {
+        case 0xE0: {
           row = 3;
           break;
         }
-			}
-			while (a < 50 && KEYPAD != 0xF0) {
+      }
+      while (a < 50 && KEYPAD != 0xF0) {
         Delay1Ms(10);
-				a++;
-			}
-		}
-	}
+        a++;
+      }
+    }
+  }
   if (row == -1 || col == -1) {
     return -1;
   } else {
