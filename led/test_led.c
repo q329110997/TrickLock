@@ -7,7 +7,7 @@
 #include <intrins.h>
 
 // LED 数字 段数据
-static code uint8 led_seg[10][8] = {
+static code uint8 led_lattice_seg[10][8] = {
   {0x00, 0x00, 0x7F, 0x41, 0x41, 0x7F, 0x00, 0x00},  // 0
   {0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00},  // 1
   {0x00, 0x00, 0x4F, 0x49, 0x49, 0x79, 0x00, 0x00},  // 2
@@ -20,7 +20,7 @@ static code uint8 led_seg[10][8] = {
   {0x00, 0x00, 0x79, 0x49, 0x49, 0x7F, 0x00, 0x00}   // 9
 };
 // LED 位数据
-static code uint8 led_bit[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
+static code uint8 led_lattice_bit[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
 
 // @func 向 HC595 发送一字节信息, 控制 LED 点阵
 static void SendByte4Hc595(uint8 dat) {
@@ -41,12 +41,12 @@ static void SendByte4Hc595(uint8 dat) {
   my_clk = 0;
 }
 
-static void led_output(uint8 j) {
+static void led_lattice_output(uint8 j) {
   uint8 i;
   P0 = 0x7F;
   for (i = 0; i < 8; ++i) {
-    P0 = led_bit[i];
-    SendByte4Hc595(led_seg[j][i]);
+    P0 = led_lattice_bit[i];
+    SendByte4Hc595(led_lattice_seg[j][i]);
     Delay1Ms(1);
     SendByte4Hc595(0x00);
   }
@@ -57,7 +57,7 @@ void test_input_passwd(char passwd[4]) {
   uint8 i, t;
   for (i = 0; i < 4; ++i) {
     for (t = 66; t > 0; --t) {
-      led_output(passwd[i] - '0');
+      led_lattice_output(passwd[i] - '0');
     }
   }
 }
@@ -68,7 +68,7 @@ void test_input_number(uint16 num) {
     tmp = num % 10;
     num /= 10;
     for (i = 66; i > 0; --i) {
-      led_output(tmp);
+      led_lattice_output(tmp);
     }
   }
 }

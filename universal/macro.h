@@ -7,11 +7,27 @@
 #ifndef MACRO_H_
 #define MACRO_H_
 
+#include <reg52.h>
+
+////////////////////////////////////
 // 模块宏定义
-#define LED_LATTICE P0  // LED 点阵 (P0)
-#define LCD P0          // LCD1602  (P0)
-#define KEYPAD P1       // 矩阵键盘 (P1)
-#define LED_MODULE P2   // LED 模块 (P2)
+#define LED_LATTICE  P0  // LED 点阵 (P0)
+#define LCD          P0  // LCD1602  (P0)
+#define KEYPAD       P1  // 矩阵键盘 (P1)
+#define LED_MODULE   P2  // LED 模块 (P2)
+
+// 矩阵键盘
+#define KEY_S_PASSWD  0x99   // 设置密码键
+#define KEY_CANCEL    0x88   // 取消键
+#define KEY_DELETE    0x77   // 删除键
+#define KEY_CONFIRM   0x66   // 确认键
+#define KEY_NULL      0x55   // 空键
+
+// 独立键盘
+#define KEY_LOCK      0xF0   // 锁
+#define KEY_UNLOCK    0x0F   // 解锁
+#define KEY_S_N       0x33   // 设置N
+#define KEY_S_S       0x44   // 设置S
 
 ////////////////////////////////////
 // 通用宏函数

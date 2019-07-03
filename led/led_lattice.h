@@ -7,24 +7,35 @@
 #ifndef LED_LATTICE_H_
 #define LED_LATTICE_H_
 
-// @func LED锁状态显示
+// @func LED点阵锁状态显示
 // @param void
 // @return void
-void Lock4Led(void);
+void Lock4LedLattice(void);
 
-// @func LED解锁状态显示
+// @func LED点阵解锁状态显示
 // @param void
 // @return void
-void Unlock4Led(void);
+void Unlock4LedLattice(void);
 
-// @func LED解锁动画
+// @func LED点阵解锁动画
 // @param void
 // @return void
-void LedUnlock(void);
+void LedLatticeUnlock(void);
 
-// @func LED锁动画
+// @func LED点阵锁动画
 // @param void
 // @return void
-void LedLock(void);
+void LedLatticeLock(void);
+
+// ???
+void InputPasswdError(void);
+
+void InputPasswdSuccess(void);
+
+// ???
+void SetSuccsse(void);
+
+// ???
+void ErrorWait(void);
 
 #endif  // LED_LATTICE_H_

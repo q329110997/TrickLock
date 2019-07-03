@@ -29,29 +29,6 @@ typedef struct Information {
   uint16 n: 5;   // 可错误次数
   uint16 s: 11;  // 错误等待时间
   char passwd[4];  // 密码
-
-  /////////// 成员函数 /////////////
-  // 获取当前锁状态
-  Sts (* const get_sts)(struct Information* self);
-  // 设置当前锁状态
-  void (* const set_sts)(struct Information* self, Sts status);
-  // 获取可错误次数n
-  uint8 (* const get_n)(struct Information* self);
-  // 修改可错误次数n
-  void (* const set_n)(struct Information* self, uint8 n);
-  // 获取错误等待时间s
-  uint16 (* const get_s)(struct Information* self);
-  // 修改错误等待时间s
-  void (* const set_s)(struct Information* self, uint16 s);
-  // 获取当前密码passwd
-  void (* const get_passwd)(struct Information* self, char passwd[4]);
-  // 修改当前密码passwd
-  void (* const set_passwd)(struct Information* self, char passwd[4]);
-  // 对比输入密码和当前密码
-  void (* const diff_passwd)(struct Information* self, char passwd[4]);
 } Infor;
-
-// 生成密码锁信息对象 (单例模式)
-Infor* generator_infor(void);
 
 #endif  // TYPE_H_
