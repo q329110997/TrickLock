@@ -41,16 +41,19 @@ static void SendByte4Hc595(uint8 dat) {
   my_clk = 0;
 }
 
+// @func 在LED上输出结果
+// @param j uint8 带输出的字节
+// @return void
 static void led_lattice_output(uint8 j) {
   uint8 i;
-  P0 = 0x7F;
+  LED_LATTICE = 0x7F;
   for (i = 0; i < 8; ++i) {
-    P0 = led_lattice_bit[i];
+    LED_LATTICE = led_lattice_bit[i];
     SendByte4Hc595(led_lattice_seg[j][i]);
     Delay1Ms(1);
     SendByte4Hc595(0x00);
   }
-  P0 = 0x00;
+  LED_LATTICE = 0x00;
 }
 
 void test_input_passwd(char passwd[4]) {

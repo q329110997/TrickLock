@@ -13,6 +13,10 @@
 
 extern Infor infor;
 
+// @func 比较密码, 返回1则为true
+// @param infor char[] 原始密码
+// @param passwd char[] 输入密码
+// @return bit 返回比较结果
 static bit diff_passwd(char* infor, char* passwd) {
   uint8 i;
   for (i = 0; i < 4; ++i) {
@@ -23,6 +27,10 @@ static bit diff_passwd(char* infor, char* passwd) {
   return 1;
 }
 
+// @func 设置密码
+// @param infor char[] 原始密码
+// @param passwd char[] 输入密码
+// @return void
 static void set_passwd(char* infor, char* passwd) {
   uint8 i;
   for (i = 0; i < 4; ++i) {
@@ -30,9 +38,12 @@ static void set_passwd(char* infor, char* passwd) {
   }
 }
 
-static uint8 InputPasswd__(uint8* N) {
+// @func 输入密码函数
+// @param N int* 地址传递N, 可错误次数, N为0x11时进行错误等待
+// @return bit 返回输入状态, 若为1则输入成功
+static bit InputPasswd__(uint8* N) {
   char password[4];
-  while (N--) {
+  while ((*N)--) {
     if (InputPasswd(password)) {
       if (diff_passwd(infor.passwd, password)) {
         return 1;
@@ -40,13 +51,15 @@ static uint8 InputPasswd__(uint8* N) {
       InputPasswdError();
     } else {
       LedModuleLock();
+      LedLatticeLock();
       return 0;
     }
   }
-  return 0x11;
+	*N = 0x11;
+  return 0;
 }
 
-void setting(int16 coding) {
+void KeyTest(int16 coding) {
   uint8 N;
   uint16 S = infor.s;
   char passwd[4];
@@ -54,56 +67,61 @@ void setting(int16 coding) {
   int16 input_num;
   
   switch (coding) {
-    case KEY_LOCK: {
+    case KEY_LOCK: {  // 加锁键
       LedModuleLock();
       LedLatticeLock();
       break;
     }
-    case KEY_UNLOCK: {
+    case KEY_UNLOCK: {  // 解锁键
       if (now_status != UNLOCK) {
-        N = infor.n
+        N = infor.n;
         if (InputPasswd__(&N)) {
           LedModuleUnlock();
           LedLatticeUnlock();
           break;
         }
-        // TODO
+				if (N == 0x11) {
+				  infor.sts = ERROR;
+          ErrorWait();
+          Delay1S(infor.s);
+          infor.sts = LOCK;
+				}
       }
       break;
     }
-    case KEY_S_N: {
-      if (InputPasswd__(infor.n)) {
+    case KEY_S_N: {  // 设置N键
+			N = infor.n;
+      if (InputPasswd__(&N)) {
         InputPasswdSuccess();
         if (InputNumber(&input_num)) {
           infor.n = input_num;
-          test_input_number(infor.n);
-          // SetSuccsse();
+          SetSuccess();
           break;
         }
       }
       LedLatticeLock();
       break;
     }
-    case KEY_S_S: {
-      if (InputPasswd__(infor.n)) {
+    case KEY_S_S: {  // 设置S键
+			N = infor.n;
+      if (InputPasswd__(&N)) {
         InputPasswdSuccess();
         if (InputNumber(&input_num)) {
           infor.s = input_num;
-          test_input_number(infor.s);
-          // SetSuccsse();
+          SetSuccess();
           break;
         }
       }
       LedLatticeLock();
       break;
     }
-    case KEY_S_PASSWD: {
-      if (InputPasswd__(infor.n)) {
+    case KEY_S_PASSWD: {  // 设置密码键
+			N = infor.n;
+      if (InputPasswd__(&N)) {
         InputPasswdSuccess();
         if (InputPasswd(passwd)) {
           set_passwd(infor.passwd, passwd);
-          // SetSuccsse();
-          test_input_passwd(infor.passwd);
+          SetSuccess();
           break;
         }
       }

@@ -1,4 +1,4 @@
-#include "settings.h"
+#include "KeyTests.h"
 
 #include "universal/macro.h"
 #include "universal/type.h"
@@ -15,17 +15,21 @@
 #include <reg52.h>
 #include <stdlib.h>
 
-int main(void) {
+
+// @func 主函数, 密码锁
+// @param void
+// @return void
+void main(void) {
   int16 encode_value;
-  extern Infor infor;
+	LedModuleLock();	
   while (1) {
     encode_value = IndepkeyEncoding();
     if (encode_value != -1) {
-      setting(encode_value);
+      KeyTest(encode_value);
     }
     encode_value = KeypadEncoding();
     if (encode_value != -1) {
-      setting(encode_value);
+      KeyTest(encode_value);
     }
   }
 }

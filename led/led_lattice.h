@@ -27,15 +27,24 @@ void LedLatticeUnlock(void);
 // @return void
 void LedLatticeLock(void);
 
-// ???
+// @func 密码输入错误, 显示 ×
+// @param void
+// @return void
 void InputPasswdError(void);
 
+// @func 密码输入正确, 显示 ⭕
+// @param void
+// @return void
 void InputPasswdSuccess(void);
 
-// ???
-void SetSuccsse(void);
+// @func 设置信息成功, 显示 √
+// @param void
+// @return void
+void SetSuccess(void);
 
-// ???
+// @func 错误等待显示, 显示 。。。
+// @param void
+// @return void
 void ErrorWait(void);
 
 #endif  // LED_LATTICE_H_
