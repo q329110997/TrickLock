@@ -6,7 +6,7 @@
 #ifndef INPUT_H_
 #define INPUT_H_
 
-#include "type.h"
+#include "../universal/type.h"
 
 #include <reg52.h>
 

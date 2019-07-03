@@ -27,17 +27,22 @@ void LedLatticeUnlock(void);
 // @return void
 void LedLatticeLock(void);
 
+// @func 输入取消, 显示 ？
+// @param void
+// @return void
+void InputCancel(void);
+
 // @func 密码输入错误, 显示 ×
 // @param void
 // @return void
 void InputPasswdError(void);
 
-// @func 密码输入正确, 显示 ⭕
+// @func 密码输入正确, 显示 √
 // @param void
 // @return void
 void InputPasswdSuccess(void);
 
-// @func 设置信息成功, 显示 √
+// @func 设置信息成功, 显示 OK
 // @param void
 // @return void
 void SetSuccess(void);

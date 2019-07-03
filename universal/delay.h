@@ -13,7 +13,7 @@
 // @func  时延50Us (5 * 10^-2 s)
 // @param n uint8 时延50us的多少倍
 // @return void
-void Delay50Us(uint8 n);
+// void Delay50Us(uint8 n);
 
 // @func  时延1ms (1 * 10^-3 s)
 // @param n uint8 时延1ms的多少倍

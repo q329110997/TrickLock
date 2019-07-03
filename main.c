@@ -1,12 +1,12 @@
-#include "KeyTests.h"
+#include "keytest.h"
 
 #include "universal/macro.h"
 #include "universal/type.h"
 #include "universal/delay.h"
-#include "universal/input.h"
 
 #include "keyboard/keypad.h"
 #include "keyboard/indepkey.h"
+#include "keyboard/input.h"
 
 #include "led/test_led.h"
 #include "led/led_lattice.h"

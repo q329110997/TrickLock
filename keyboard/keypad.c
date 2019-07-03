@@ -72,46 +72,46 @@ int16 KeypadEncoding(void) {
     case -1: {   // 无输入
       return -1;
     }
-    case 0x00: {
+    case S1: {
       return 7;  // 7
     }
-    case 0x01: {
+    case S2: {
       return 8;  // 8
     }
-    case 0x02: {
+    case S3: {
       return 9;  // 9
     }
-    case 0x03: {
+    case S4: {
       return KEY_S_PASSWD;  // 设置密码
     }
-    case 0x10: {
+    case S5: {
       return 4;  // 4
     }
-    case 0x11: {
+    case S6: {
       return 5;  // 5
     }
-    case 0x12: {
+    case S7: {
       return 6;  // 6
     }
-    case 0x13: {
+    case S8: {
       return KEY_CANCEL;  // 取消输入
     }
-    case 0x20: {
+    case S9: {
       return 1;  // 1
     }
-    case 0x21: {
+    case S10: {
       return 2;  // 2
     }
-    case 0x22: {
+    case S11: {
       return 3;  // 3
     }
-    case 0x23: {
+    case S12: {
       return KEY_DELETE;  // 删除输入
     }
-    case 0x31: {
+    case S14: {
       return 0;  // 0
     }
-    case 0x33: {
+    case S16: {
       return KEY_CONFIRM;  // 确认输入
     }
     default: {

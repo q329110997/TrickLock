@@ -16,16 +16,16 @@
 int16 IndepkeyEncoding(void) {
   int16 ret = -1;
   if (k1 == 0) {
-    GENE_ENCODE(1, KEY_LOCK);
+    GENE_ENCODE(1, K1);
   }
 	if (k2 == 0) {
-    GENE_ENCODE(2, KEY_UNLOCK);
+    GENE_ENCODE(2, K2);
   }
 	if (k3 == 0) {
-    GENE_ENCODE(3, KEY_S_N);
+    GENE_ENCODE(3, K3);
   }
 	if (k4 == 0) {
-    GENE_ENCODE(4, KEY_S_S);
+    GENE_ENCODE(4, K4);
   }
   return ret;
 }

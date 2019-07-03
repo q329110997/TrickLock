@@ -1,9 +1,9 @@
 #include "input.h"
 
-#include "delay.h"
-#include "macro.h"
+#include "../universal/delay.h"
+#include "../universal/macro.h"
 
-#include "../keyboard/keypad.h"
+#include "keypad.h"
 
 #include <string.h>
 

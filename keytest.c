@@ -3,15 +3,23 @@
 #include "universal/delay.h"
 #include "universal/macro.h"
 #include "universal/type.h"
-#include "universal/input.h"
+
+#include "keyboard/input.h"
 
 #include "led/led_lattice.h"
 #include "led/led_module.h"
-#include "led/test_led.h"
 
 #include <reg52.h>
 
 extern Infor infor;
+
+static void beep__(void) {
+  int8 n = 64;
+  while (n--) {
+    beep = ~beep;
+    Delay1Ms(1);
+  }
+}
 
 // @func 比较密码, 返回1则为true
 // @param infor char[] 原始密码
@@ -50,8 +58,7 @@ static bit InputPasswd__(uint8* N) {
       }
       InputPasswdError();
     } else {
-      LedModuleLock();
-      LedLatticeLock();
+      InputCancel();
       return 0;
     }
   }
@@ -62,7 +69,7 @@ static bit InputPasswd__(uint8* N) {
 void KeyTest(int16 coding) {
   uint8 N;
   uint16 S = infor.s;
-  char passwd[4];
+  char passwd[4], new_passwd[4];
   Sts now_status = infor.sts;
   int16 input_num;
   
@@ -73,7 +80,7 @@ void KeyTest(int16 coding) {
       break;
     }
     case KEY_UNLOCK: {  // 解锁键
-      if (now_status != UNLOCK) {
+      if (now_status == LOCK) {
         N = infor.n;
         if (InputPasswd__(&N)) {
           LedModuleUnlock();
@@ -81,10 +88,12 @@ void KeyTest(int16 coding) {
           break;
         }
 				if (N == 0x11) {
-				  infor.sts = ERROR;
+          infor.sts = ERROR;
           ErrorWait();
+          LedModuleLock();
+          beep__();
           Delay1S(infor.s);
-          infor.sts = LOCK;
+          LedLatticeLock();
 				}
       }
       break;
@@ -99,7 +108,6 @@ void KeyTest(int16 coding) {
           break;
         }
       }
-      LedLatticeLock();
       break;
     }
     case KEY_S_S: {  // 设置S键
@@ -112,7 +120,6 @@ void KeyTest(int16 coding) {
           break;
         }
       }
-      LedLatticeLock();
       break;
     }
     case KEY_S_PASSWD: {  // 设置密码键
@@ -120,12 +127,26 @@ void KeyTest(int16 coding) {
       if (InputPasswd__(&N)) {
         InputPasswdSuccess();
         if (InputPasswd(passwd)) {
-          set_passwd(infor.passwd, passwd);
-          SetSuccess();
+          InputPasswdSuccess();
+          if (InputPasswd(new_passwd)) {
+            if (diff_passwd(passwd, new_passwd)) {
+              set_passwd(infor.passwd, passwd);
+              SetSuccess();
+              if (infor.sts == UNLOCK) {
+                LedModuleLock();
+                LedLatticeLock();
+              }
+            } else {
+              InputPasswdError();
+            }
+            break;
+          }
+          InputCancel();
           break;
         }
+        InputCancel();
       }
-      LedLatticeLock();
+      break;
     }
     default: {
       break;
